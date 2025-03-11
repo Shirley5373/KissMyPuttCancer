@@ -78,9 +78,9 @@
         <a href="index.html" class="btn btn-primary">Go Back to Main Page</a>
     </div>
 
-    <!-- JavaScript for Tab Functionality -->
+        <!-- JavaScript for Tab Functionality -->
     <script>
-        function openTab(tabName) {
+        function openTab(tabName, event) {
             // Hide all tab content
             document.querySelectorAll('.tab-content').forEach(tab => {
                 tab.classList.remove('active');
@@ -93,7 +93,11 @@
 
             // Show the clicked tab content and highlight the button
             document.getElementById(tabName).classList.add('active');
-            event.currentTarget.classList.add('active');
+
+            // Make sure event exists before trying to access it
+            if (event) {
+                event.currentTarget.classList.add('active');
+            }
         }
     </script>
 
