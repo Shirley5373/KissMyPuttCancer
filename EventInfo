@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Event Information</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <style>
+        body {
+            background-color: #f8f9fa;
+            color: black;
+            text-align: center;
+            padding: 50px;
+        }
+        .container {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+            max-width: 600px;
+            margin: auto;
+        }
+        .btn-back {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Event Information</h1>
+        <p><strong>Format:</strong> 4-Man Scramble</p>
+        <p><strong>Entry Fee:</strong> $800 per team or $200 per person</p>
+        <p><strong>Start Time:</strong> Shotgun starts at 9 AM</p>
+        <p><strong>Teams:</strong> 36 teams, 3 flights</p>
+        <p><strong>Entry Deadline:</strong> All entries due by April 21st</p>
+        <p><strong>Food:</strong> Provided</p>
+        <p><strong>Location:</strong> Sugar Tree Golf Club</p>
+        <p><strong>Address:</strong> 251 Sugar Tree Dr, Lipan, TX 76462</p>
+        
+        <a href="index.html" class="btn btn-primary btn-back">Go Back</a>
+    </div>
+</body>
+</html>
