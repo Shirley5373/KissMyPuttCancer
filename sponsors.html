@@ -106,8 +106,8 @@
             const holeElement = document.createElement("div");
             holeElement.className = "hole";
             holeElement.innerText = hole.number;
-            holeElement.style.top = `${Math.random() * 400 + 50}px`;
-            holeElement.style.left = `${Math.random() * 600 + 50}px`;
+            holeElement.style.top = `${(index % 6) * 70 + 50}px`;
+            holeElement.style.left = `${(index % 3) * 250 + 50}px`;
             
             const tooltip = document.createElement("div");
             tooltip.className = "tooltip";
