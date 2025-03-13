@@ -41,6 +41,7 @@
         .navbar-custom .nav-link {
             color: #2b6a2b;
             font-weight: bold;
+            cursor: pointer;
         }
         .navbar-custom .nav-link:hover {
             color: #004466;
@@ -57,6 +58,14 @@
             background-color: #2b6a2b;
             color: white;
         }
+
+        /* Section Display */
+        .content-section {
+            display: none; /* Hide all sections initially */
+        }
+        .content-section.active {
+            display: block; /* Show only the active section */
+        }
     </style>
 </head>
 <body>
@@ -70,12 +79,12 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto">
-                    <li class="nav-item"><a class="nav-link" href="#home">Home</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#faq">FAQ</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#funds">Turn in Funds</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#impact">Your Impact</a></li>
-                    <li class="nav-item"><a class="nav-link" href="event.html">Event</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#supporters">Featured Supporters</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#" onclick="showSection('home')">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#" onclick="showSection('faq')">FAQ</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#" onclick="showSection('funds')">Turn in Funds</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#" onclick="showSection('impact')">Your Impact</a></li>
+                    <li class="nav-item"><a class="nav-link" href="event.html">Event</a></li> <!-- Regular Link -->
+                    <li class="nav-item"><a class="nav-link" href="#" onclick="showSection('supporters')">Featured Supporters</a></li>
                 </ul>
             </div>
         </div>
@@ -84,17 +93,78 @@
     <!-- Tabs Below Navigation -->
     <div class="nav-tabs-custom text-center">
         <ul class="nav nav-pills justify-content-center">
-            <li class="nav-item"><a class="nav-link active" href="#home">Home</a></li>
-            <li class="nav-item"><a class="nav-link" href="#resources">Fundraising Resources</a></li>
+            <li class="nav-item"><a class="nav-link active" href="#" onclick="showSection('home')">Home</a></li>
+            <li class="nav-item"><a class="nav-link" href="#" onclick="showSection('resources')">Fundraising Resources</a></li>
         </ul>
     </div>
 
-    <!-- Hero Section -->
-    <div class="hero">
-        <h1>Join Us for the Ultimate Golf Fundraiser</h1>
-        <p>Support cancer research while enjoying a fantastic day of golf.</p>
+    <!-- Content Sections -->
+    <div id="home" class="content-section active">
+        <div class="hero">
+            <h1>Join Us for the Ultimate Golf Fundraiser</h1>
+            <p>Support cancer research while enjoying a fantastic day of golf.</p>
+        </div>
     </div>
 
+    <div id="faq" class="content-section">
+        <div class="hero">
+            <h1>Frequently Asked Questions</h1>
+            <p>Find answers to common questions about the fundraiser.</p>
+        </div>
+    </div>
+
+    <div id="funds" class="content-section">
+        <div class="hero">
+            <h1>Turn in Funds</h1>
+            <p>Submit the funds you've raised for cancer research.</p>
+        </div>
+    </div>
+
+    <div id="impact" class="content-section">
+        <div class="hero">
+            <h1>Your Impact</h1>
+            <p>See how your contributions make a difference.</p>
+        </div>
+    </div>
+
+    <div id="supporters" class="content-section">
+        <div class="hero">
+            <h1>Featured Supporters</h1>
+            <p>Meet some of the amazing people supporting this cause.</p>
+        </div>
+    </div>
+
+    <div id="resources" class="content-section">
+        <div class="hero">
+            <h1>Fundraising Resources</h1>
+            <p>Helpful tools and information for fundraising.</p>
+        </div>
+    </div>
+
+    <!-- JavaScript -->
+    <script>
+        function showSection(sectionId) {
+            // Hide all sections
+            document.querySelectorAll('.content-section').forEach(section => {
+                section.style.display = 'none';
+            });
+
+            // Show the selected section
+            document.getElementById(sectionId).style.display = 'block';
+
+            // Update URL without reloading
+            history.pushState(null, "", `#${sectionId}`);
+        }
+
+        // Load the correct section on page load based on the URL hash
+        window.onload = function () {
+            let section = location.hash.replace('#', '') || 'home';
+            showSection(section);
+        };
+    </script>
+
+    <!-- Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
 </body>
 </html>
