@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Interactive Golf Course & Scoreboard</title>
+    <title>Golf Sponsorships</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <style>
         body {
@@ -11,127 +11,25 @@
             color: white;
             text-align: center;
         }
-        .golf-course {
-            position: relative;
-            width: 100%;
-            max-width: 900px;
-            margin: auto;
-            padding-top: 50px;
+        .container {
+            display: flex;
+            justify-content: flex-start;
+            align-items: flex-start;
+            padding: 50px;
         }
-        .hole {
-            position: absolute;
-            width: 40px;
-            height: 40px;
-            background: green;
-            border-radius: 50%;
-            text-align: center;
-            line-height: 40px;
+        .hole-list {
+            width: 250px;
+            text-align: left;
+        }
+        .hole-item {
+            font-size: 1.5rem;
             font-weight: bold;
-            cursor: pointer;
-            color: white;
-            border: 2px solid yellow;
-        }
-        .hole:hover {
-            background: yellow;
-            color: black;
-        }
-        .tooltip {
-            display: none;
-            position: absolute;
-            background: rgba(0, 0, 0, 0.8);
             color: white;
             padding: 10px;
-            border-radius: 5px;
+            cursor: pointer;
+            border-bottom: 1px solid yellow;
         }
-        .scoreboard {
-            margin-top: 30px;
-            background: rgba(0, 0, 0, 0.7);
-            padding: 15px;
-            border-radius: 10px;
+        .hole-item:hover {
+            color: yellow;
         }
-        .scoreboard table {
-            width: 100%;
-            color: white;
-        }
-    </style>
-</head>
-<body>
-    <h1>Interactive Golf Course</h1>
-    <div class="golf-course" id="golfCourse">
-        <!-- Holes will be added dynamically -->
-    </div>
-
-    <h2 class="mt-5">Tournament Scoreboard</h2>
-    <div class="scoreboard container">
-        <table class="table table-dark table-striped">
-            <thead>
-                <tr>
-                    <th>Position</th>
-                    <th>Sponsor</th>
-                    <th>Hole Sponsored</th>
-                </tr>
-            </thead>
-            <tbody id="scoreboardBody">
-                <!-- Sponsors will be added dynamically -->
-            </tbody>
-        </table>
-    </div>
-
-    <script>
-        const holes = [
-            { number: 1, sponsor: "ABC Corp", contest: "Longest Drive" },
-            { number: 2, sponsor: "XYZ Golf", contest: "Closest to Pin" },
-            { number: 3, sponsor: "Fast Wheels", contest: "Hole-in-One Prize" },
-            { number: 4, sponsor: "Tech Solutions", contest: "Par 3 Challenge" },
-            { number: 5, sponsor: "Green Energy", contest: "Birdie Bonus" },
-            { number: 6, sponsor: "Sunshine Realty", contest: "Eagle Prize" },
-            { number: 7, sponsor: "Mighty Tools", contest: "Fairway Challenge" },
-            { number: 8, sponsor: "BankPlus", contest: "Putting Contest" },
-            { number: 9, sponsor: "Ace Insurance", contest: "Long Putt Prize" },
-            { number: 10, sponsor: "Speedy Logistics", contest: "Accuracy Challenge" },
-            { number: 11, sponsor: "Power Drinks", contest: "Drive the Green" },
-            { number: 12, sponsor: "HealthFirst", contest: "Charity Hole" },
-            { number: 13, sponsor: "Winning Edge", contest: "Golf Trivia Prize" },
-            { number: 14, sponsor: "Luxury Homes", contest: "VIP Hole" },
-            { number: 15, sponsor: "Big Deals", contest: "Shot of the Day" },
-            { number: 16, sponsor: "Blue Skies Travel", contest: "Vacation Giveaway" },
-            { number: 17, sponsor: "Gold Standard", contest: "Golden Tee Challenge" },
-            { number: 18, sponsor: "Final Swing", contest: "Grand Finale Hole" }
-        ];
-
-        const golfCourse = document.getElementById("golfCourse");
-        const scoreboardBody = document.getElementById("scoreboardBody");
-
-        holes.forEach((hole, index) => {
-            const holeElement = document.createElement("div");
-            holeElement.className = "hole";
-            holeElement.innerText = hole.number;
-            holeElement.style.top = `${(index % 6) * 70 + 50}px`;
-            holeElement.style.left = `${(index % 3) * 250 + 50}px`;
-            
-            const tooltip = document.createElement("div");
-            tooltip.className = "tooltip";
-            tooltip.innerText = `Hole ${hole.number}: ${hole.sponsor}\nContest: ${hole.contest}`;
-            
-            holeElement.addEventListener("mouseover", () => {
-                tooltip.style.display = "block";
-                tooltip.style.top = `${holeElement.offsetTop - 50}px`;
-                tooltip.style.left = `${holeElement.offsetLeft + 30}px`;
-            });
-            holeElement.addEventListener("mouseout", () => {
-                tooltip.style.display = "none";
-            });
-            
-            golfCourse.appendChild(holeElement);
-            golfCourse.appendChild(tooltip);
-        });
-
-        holes.forEach((hole, index) => {
-            const row = document.createElement("tr");
-            row.innerHTML = `<td>${index + 1}</td><td>${hole.sponsor}</td><td>Hole ${hole.number}</td>`;
-            scoreboardBody.appendChild(row);
-        });
-    </script>
-
-</body>
-</html>
+        .tooltip {
