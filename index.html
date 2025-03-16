@@ -290,11 +290,70 @@
 </div>
 
     <div id="impact" class="content-section">
-        <div class="hero">
-            <h1>Your Impact</h1>
-            <p>See how your contributions make a difference.</p>
-        </div>
+    <div class="hero">
+        <h1>Your Impact</h1>
+        <p>See how your contributions make a difference.</p>
     </div>
+
+    <!-- Random Image Gallery -->
+    <div class="gallery">
+        <h2>Photo Gallery</h2>
+        <div class="gallery-grid" id="randomGallery">
+            <!-- Images will be injected here by JavaScript -->
+        </div>
+        <a href="full-gallery.html" class="view-more">View Full Gallery</a>
+    </div>
+
+    <!-- Jennifer Jane Pope Bio -->
+    <div class="bio">
+        <h2>About Jennifer Jane Pope</h2>
+        <p>Jennifer Jane Pope was a loving and courageous individual who fought bravely against leiomyosarcoma...</p>
+        <!-- Add more details about her story and legacy -->
+    </div>
+
+    <!-- Leiomyosarcoma Description -->
+    <div class="description">
+        <h2>What is Leiomyosarcoma?</h2>
+        <p>Leiomyosarcoma is a rare and aggressive type of cancer that affects smooth muscle tissues...</p>
+        <!-- Add more medical details if needed -->
+    </div>
+</div>
+
+<script>
+    // Random Gallery Image Loader
+    const allImages = [
+        "images/photo1.jpg", "images/photo2.jpg", "images/photo3.jpg", 
+        "images/photo4.jpg", "images/photo5.jpg", "images/photo6.jpg",
+        "images/photo7.jpg", "images/photo8.jpg", "images/photo9.jpg",
+        "images/photo10.jpg"
+    ];
+
+    function getRandomImages() {
+        let shuffled = allImages.sort(() => 0.5 - Math.random());
+        return shuffled.slice(0, 6);
+    }
+
+    function loadRandomGallery() {
+        const galleryDiv = document.getElementById("randomGallery");
+        const images = getRandomImages();
+        images.forEach(src => {
+            let img = document.createElement("img");
+            img.src = src;
+            img.alt = "Gallery Image";
+            img.className = "gallery-img";
+            galleryDiv.appendChild(img);
+        });
+    }
+
+    document.addEventListener("DOMContentLoaded", loadRandomGallery);
+</script>
+
+<style>
+    .gallery-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
+    .gallery-img { width: 100%; height: auto; border-radius: 10px; cursor: pointer; }
+    .view-more { display: block; margin-top: 10px; text-align: center; text-decoration: none; color: #007bff; }
+    .bio, .description { margin-top: 30px; padding: 20px; background: #f9f9f9; border-radius: 10px; }
+</style>
 
    <div id="supporters" class="content-section">
     <div class="hero">
