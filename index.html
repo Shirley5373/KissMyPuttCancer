@@ -84,7 +84,7 @@
                     <li class="nav-item"><a class="nav-link" href="#" onclick="showSection('funds')">Turn in Funds</a></li>
                     <li class="nav-item"><a class="nav-link" href="#" onclick="showSection('impact')">Your Impact</a></li>
                     <li class="nav-item"><a class="nav-link" href="event.html">Event</a></li> <!-- Regular Link -->
-                    <li class="nav-item"><a class="nav-link" href="#" onclick="showSection('supporters')">Featured Supporters</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#" onclick="showSection('sponsorships')">Sponsorships</a></li>
                 </ul>
             </div>
         </div>
@@ -94,7 +94,7 @@
     <div class="nav-tabs-custom text-center">
         <ul class="nav nav-pills justify-content-center">
             <li class="nav-item"><a class="nav-link active" href="#" onclick="showSection('home')">Home</a></li>
-            <li class="nav-item"><a class="nav-link" href="#" onclick="showSection('resources')">Fundraising Resources</a></li>
+            <li class="nav-item"><a class="nav-link" href="#" onclick="showSection('sponsorships')">Sponsorships</a></li>
         </ul>
     </div>
 
@@ -473,13 +473,18 @@
     .bio, .description { margin-top: 30px; padding: 20px; background: #f9f9f9; border-radius: 10px; }
 </style>
 
-   <div id="supporters" class="content-section">
+   <div id="sponsorships" class="content-section">
     <div class="hero">
-        <h1>Featured Sponsors</h1>
-        <p>Meet some of the amazing people supporting this cause.</p>
-        <a href="sponsors.html" class="btn btn-success">View Sponsors</a>
+        <h1>Golf Course Sponsorships</h1>
+        <p>See the sponsors supporting this event.</p>
     </div>
-   </div>
+    <div class="container">
+        <div class="hole-list">
+            <!-- Holes will be added dynamically -->
+        </div>
+        <div id="tooltip" class="tooltip"></div>
+    </div>
+</div>
 
     <div id="resources" class="content-section">
         <div class="hero">
@@ -542,6 +547,51 @@ footer {
     text-align: center;
     border-top: 3px solid #004466;
 }
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        const holes = [
+            { number: 1, sponsor: "ABC Corp", contest: "Longest Drive" },
+            { number: 2, sponsor: "XYZ Golf", contest: "Closest to Pin" },
+            { number: 3, sponsor: "Fast Wheels", contest: "Hole-in-One Prize" },
+            { number: 4, sponsor: "Tech Solutions", contest: "Par 3 Challenge" },
+            { number: 5, sponsor: "Green Energy", contest: "Birdie Bonus" },
+            { number: 6, sponsor: "Sunshine Realty", contest: "Eagle Prize" },
+            { number: 7, sponsor: "Mighty Tools", contest: "Fairway Challenge" },
+            { number: 8, sponsor: "BankPlus", contest: "Putting Contest" },
+            { number: 9, sponsor: "Ace Insurance", contest: "Long Putt Prize" },
+            { number: 10, sponsor: "Speedy Logistics", contest: "Accuracy Challenge" },
+            { number: 11, sponsor: "Power Drinks", contest: "Drive the Green" },
+            { number: 12, sponsor: "HealthFirst", contest: "Charity Hole" },
+            { number: 13, sponsor: "Winning Edge", contest: "Golf Trivia Prize" },
+            { number: 14, sponsor: "Luxury Homes", contest: "VIP Hole" },
+            { number: 15, sponsor: "Big Deals", contest: "Shot of the Day" },
+            { number: 16, sponsor: "Blue Skies Travel", contest: "Vacation Giveaway" },
+            { number: 17, sponsor: "Gold Standard", contest: "Golden Tee Challenge" },
+            { number: 18, sponsor: "Final Swing", contest: "Grand Finale Hole" }
+        ];
 
+        const holeList = document.querySelector(".hole-list");
+        const tooltip = document.getElementById("tooltip");
+
+        holes.forEach(hole => {
+            const holeItem = document.createElement("div");
+            holeItem.className = "hole-item";
+            holeItem.innerText = `Hole ${hole.number}`;
+
+            holeItem.addEventListener("mouseover", (event) => {
+                tooltip.innerText = `Hole ${hole.number}\nSponsor: ${hole.sponsor}\nContest: ${hole.contest}`;
+                tooltip.style.display = "block";
+                tooltip.style.top = `${event.clientY + 10}px`;
+                tooltip.style.left = `${event.clientX + 10}px`;
+            });
+
+            holeItem.addEventListener("mouseout", () => {
+                tooltip.style.display = "none";
+            });
+
+            holeList.appendChild(holeItem);
+        });
+    });
+</script>
 </body>
 </html>
