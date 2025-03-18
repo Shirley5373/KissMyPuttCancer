@@ -596,17 +596,19 @@
     renderGallery(puttImages, puttGallery, visiblePutt);
 
     // Show More functionality
-    document.getElementById("show-more-book").addEventListener('click', () => {
-        visibleBook = (visibleBook === 6) ? photoBookImages.length : 6;
-        document.getElementById("show-more-book").innerText = (visibleBook === 6) ? "Show More" : "Show Less";
-        renderGallery(photoBookImages, bookGallery, visibleBook);
-    });
+    document.getElementById("show-more-book").addEventListener('click', (event) => {
+    event.preventDefault();  // Prevent jump
+    visibleBook = (visibleBook === 6) ? photoBookImages.length : 6;
+    event.target.innerText = (visibleBook === 6) ? "Show More" : "Show Less";
+    renderGallery(photoBookImages, bookGallery, visibleBook);
+});
 
-    document.getElementById("show-more-putt").addEventListener('click', () => {
-        visiblePutt = (visiblePutt === 6) ? puttImages.length : 6;
-        document.getElementById("show-more-putt").innerText = (visiblePutt === 6) ? "Show More" : "Show Less";
-        renderGallery(puttImages, puttGallery, visiblePutt);
-    });
+    document.getElementById("show-more-putt").addEventListener('click', (event) => {
+    event.preventDefault();  // Prevent jump
+    visibleBook = (visibleBook === 6) ? photoBookImages.length : 6;
+    event.target.innerText = (visibleBook === 6) ? "Show More" : "Show Less";
+    renderGallery(photoBookImages, bookGallery, visibleBook);
+});
 
     // Upload Handlers
     document.getElementById("photo-book-upload").addEventListener('change', (e) => {
