@@ -512,64 +512,55 @@ footer {
     border-top: 3px solid #004466;
 }
 <script>
-    document.addEventListener("DOMContentLoaded", function() {
-        const holes = [
-            { number: 1, sponsor: "ABC Corp", contest: "Longest Drive" },
-            { number: 2, sponsor: "XYZ Golf", contest: "Closest to Pin" },
-            { number: 3, sponsor: "Fast Wheels", contest: "Hole-in-One Prize" },
-            { number: 4, sponsor: "Tech Solutions", contest: "Par 3 Challenge" },
-            { number: 5, sponsor: "Green Energy", contest: "Birdie Bonus" },
-            { number: 6, sponsor: "Sunshine Realty", contest: "Eagle Prize" },
-            { number: 7, sponsor: "Mighty Tools", contest: "Fairway Challenge" },
-            { number: 8, sponsor: "BankPlus", contest: "Putting Contest" },
-            { number: 9, sponsor: "Ace Insurance", contest: "Long Putt Prize" },
-            { number: 10, sponsor: "Speedy Logistics", contest: "Accuracy Challenge" },
-            { number: 11, sponsor: "Power Drinks", contest: "Drive the Green" },
-            { number: 12, sponsor: "HealthFirst", contest: "Charity Hole" },
-            { number: 13, sponsor: "Winning Edge", contest: "Golf Trivia Prize" },
-            { number: 14, sponsor: "Luxury Homes", contest: "VIP Hole" },
-            { number: 15, sponsor: "Big Deals", contest: "Shot of the Day" },
-            { number: 16, sponsor: "Blue Skies Travel", contest: "Vacation Giveaway" },
-            { number: 17, sponsor: "Gold Standard", contest: "Golden Tee Challenge" },
-            { number: 18, sponsor: "Final Swing", contest: "Grand Finale Hole" }
-        ];
+    .hole-card {
+    background-color: #f8f9fa;
+    color: #000;
+}
+.hole-card h4 {
+    font-weight: bold;
+}
+.hole-card p {
+    margin: 5px 0;
+}
 
-        const holeList = document.querySelector(".hole-list");
-        const tooltip = document.getElementById("tooltip");
+document.addEventListener("DOMContentLoaded", function() {
+    const holes = [
+        { number: 1, sponsor: "ABC Corp", contest: "Longest Drive" },
+        { number: 2, sponsor: "XYZ Golf", contest: "Closest to Pin" },
+        { number: 3, sponsor: "Fast Wheels", contest: "Hole-in-One Prize" },
+        { number: 4, sponsor: "Tech Solutions", contest: "Par 3 Challenge" },
+        { number: 5, sponsor: "Green Energy", contest: "Birdie Bonus" },
+        { number: 6, sponsor: "Sunshine Realty", contest: "Eagle Prize" },
+        { number: 7, sponsor: "Mighty Tools", contest: "Fairway Challenge" },
+        { number: 8, sponsor: "BankPlus", contest: "Putting Contest" },
+        { number: 9, sponsor: "Ace Insurance", contest: "Long Putt Prize" },
+        { number: 10, sponsor: "Speedy Logistics", contest: "Accuracy Challenge" },
+        { number: 11, sponsor: "Power Drinks", contest: "Drive the Green" },
+        { number: 12, sponsor: "HealthFirst", contest: "Charity Hole" },
+        { number: 13, sponsor: "Winning Edge", contest: "Golf Trivia Prize" },
+        { number: 14, sponsor: "Luxury Homes", contest: "VIP Hole" },
+        { number: 15, sponsor: "Big Deals", contest: "Shot of the Day" },
+        { number: 16, sponsor: "Blue Skies Travel", contest: "Vacation Giveaway" },
+        { number: 17, sponsor: "Gold Standard", contest: "Golden Tee Challenge" },
+        { number: 18, sponsor: "Final Swing", contest: "Grand Finale Hole" }
+    ];
 
-        holes.forEach(hole => {
-            const holeItem = document.createElement("div");
-            holeItem.className = "hole-item";
-            holeItem.innerText = `Hole ${hole.number}`;
-            // Bigger Black Font Styling
-            holeItem.style.fontSize = "20px";
-            holeItem.style.color = "black";
-            holeItem.style.margin = "10px 0";
-            holeItem.style.cursor = "pointer";
+    const holeList = document.querySelector(".hole-list");
+    holeList.innerHTML = ""; // Clear any previous content
 
-            holeItem.addEventListener("mouseover", (event) => {
-                tooltip.innerHTML = `
-                    <strong>Hole ${hole.number}</strong><br>
-                    <span style="font-size: 18px; color: black;">Sponsor: ${hole.sponsor}</span><br>
-                    <span style="font-size: 16px; color: black;">Contest: ${hole.contest}</span>
-                `;
-                tooltip.style.display = "block";
-                tooltip.style.top = `${event.clientY + 10}px`;
-                tooltip.style.left = `${event.clientX + 10}px`;
-                tooltip.style.backgroundColor = "#fff";
-                tooltip.style.padding = "10px";
-                tooltip.style.border = "1px solid black";
-                tooltip.style.borderRadius = "8px";
-                tooltip.style.color = "black";
-            });
+    holes.forEach(hole => {
+        const holeCard = document.createElement("div");
+        holeCard.className = "hole-card p-3 mb-3 border rounded bg-light";
 
-            holeItem.addEventListener("mouseout", () => {
-                tooltip.style.display = "none";
-            });
+        holeCard.innerHTML = `
+            <h4 style="color:#004466;">Hole ${hole.number}</h4>
+            <p><strong>Sponsor:</strong> ${hole.sponsor}</p>
+            <p><strong>Contest:</strong> ${hole.contest}</p>
+        `;
 
-            holeList.appendChild(holeItem);
-        });
+        holeList.appendChild(holeCard);
     });
+});
 </script>
 </body>
 </html>
