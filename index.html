@@ -294,8 +294,36 @@
         <h1>Your Impact</h1>
         <p>See how your contributions make a difference.</p>
     </div>
-    <div id="impact-gallery" class="gallery">
-        <!-- Images will be inserted here dynamically -->
+
+    <div class="container d-flex flex-wrap">
+        <!-- LEFT: Jennifer's Gallery -->
+        <div style="flex: 2;">
+            <h2 style="color:white; text-align:center;">Jennifer Through the Years</h2>
+            <div id="jennifer-gallery-grid" class="gallery-grid"></div>
+
+            <button id="show-more-btn" class="btn btn-light mt-3">Show More</button>
+
+            <input type="file" id="photo-upload" class="form-control mt-3" accept="image/*" multiple>
+            <p class="text-white mt-2">*Upload photos of Jennifer you'd like to share</p>
+        </div>
+
+        <!-- RIGHT: Kiss My Putt Info -->
+        <div class="ps-4" style="flex: 1;">
+            <h2 style="color:white;">Kiss My Putt 2025</h2>
+            <p style="color:white;">This event honors Jennifer and all fighters, raising funds for cancer awareness and support. Your participation leaves a lasting impact.</p>
+
+            <!-- Jennifer Bio -->
+            <div class="bio mt-4 p-3" style="background-color: black; color: white; border-radius: 10px;">
+                <h3>About Jennifer Jane Pope</h3>
+                <p>Jennifer was a loving, courageous individual who fought bravely against leiomyosarcoma. Her strength and humor touched everyone she met, inspiring us to continue the fight.</p>
+            </div>
+
+            <!-- Leiomyosarcoma Info -->
+            <div class="description mt-4 p-3" style="background-color: #333; color: white; border-radius: 10px;">
+                <h3>What is Leiomyosarcoma?</h3>
+                <p>Leiomyosarcoma (LMS) is a rare, aggressive cancer arising from smooth muscle cells. It often resists treatment and can spread rapidly. Jennifer's battle with LMS reminds us of the importance of awareness and support.</p>
+            </div>
+        </div>
     </div>
 </div>
 
@@ -361,80 +389,44 @@
 </script>
 
 <style>
-    .gallery {
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: center;
+
+    .gallery-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
         gap: 10px;
-        padding: 20px;
+        padding: 10px;
     }
 
-    .gallery img {
-        width: 150px;
-        height: 150px;
-        object-fit: cover;
-        cursor: pointer;
-        border-radius: 10px;
-        transition: transform 0.3s ease-in-out;
-    }
-
-    .gallery img:hover {
-        transform: scale(1.1);
-    }
-
-    .modal {
-        position: fixed;
-        top: 0;
-        left: 0;
+    .gallery-grid img {
         width: 100%;
-        height: 100%;
-        background: rgba(0, 0, 0, 0.8);
-        display: flex;
-        justify-content: center;
-        align-items: center;
-    }
-
-    .modal-content {
-        position: relative;
-        background: white;
-        padding: 20px;
+        height: auto;
+        object-fit: cover;
         border-radius: 10px;
-        max-width: 80%;
-        text-align: center;
-    }
-
-    .modal-content img {
-        max-width: 100%;
-        max-height: 80vh;
-    }
-
-    .close-btn {
-        position: absolute;
-        top: 10px;
-        right: 15px;
-        font-size: 24px;
         cursor: pointer;
+        transition: transform 0.3s;
+    }
+
+    .gallery-grid img:hover {
+        transform: scale(1.05);
+    }
+
+    .hole-item {
+        font-size: 20px;
+        color: black;
+        font-weight: bold;
+    }
+
+    .tooltip {
+        position: absolute;
+        display: none;
+        background-color: #fff;
+        color: black;
+        border: 1px solid black;
+        padding: 10px;
+        border-radius: 8px;
+        z-index: 1000;
     }
 </style>
-    <!-- Jennifer Jane Pope Bio -->
-    <div class="bio">
-        <h2>About Jennifer Jane Pope</h2>
-        <p>Jennifer Jane Pope was a loving and courageous individual who fought bravely against leiomyosarcoma...</p>
-        <!-- Add more details about her story and legacy -->
-    </div>
-
-    <!-- Leiomyosarcoma Description -->
-    <div class="description" style="background: url('https://tse4.mm.bing.net/th?id=OIP.Omcvn0HziLiV2Jm5RgcRhwHaFd&pid=Api&P=0&h=180') center/cover no-repeat; color: white; padding: 30px; border-radius: 10px;">
-        <h2>What is Leiomyosarcoma?</h2>
-        <p>
-    Leiomyosarcoma (LMS) is a rare and aggressive type of soft tissue sarcoma that arises from smooth muscle cells, 
-    typically found in the uterus, stomach, intestines, blood vessels, and other organs. It accounts for approximately 
-    10-20% of all soft tissue sarcomas and is diagnosed in only about 4 out of every 1 million people per year. 
-    This cancer is often resistant to chemotherapy and can spread to other parts of the body, making early detection 
-    and specialized treatment crucial. Jennifer Jane Pope was diagnosed with this challenging disease, and her 
-    fight against LMS showcases her incredible strength and resilience.
-</p>
-    </div>
 </div>
 
 <script>
@@ -517,7 +509,53 @@
         showSection(section);
     };
 </script>
+<script>
+    const jenniferImages = [
+        // Paste Jennifer's photo URLs here
+        "https://scontent-dfw5-1.xx.fbcdn.net/....jpg",
+        "https://scontent-dfw5-2.xx.fbcdn.net/....jpg",
+        // more...
+    ];
 
+    let currentVisible = 6;
+    const jenniferGallery = document.getElementById("jennifer-gallery-grid");
+    const showMoreBtn = document.getElementById("show-more-btn");
+    const photoUpload = document.getElementById("photo-upload");
+
+    function renderGallery(limit) {
+        jenniferGallery.innerHTML = "";
+        const imagesToShow = jenniferImages.slice(0, limit);
+        imagesToShow.forEach(imgSrc => {
+            const img = document.createElement("img");
+            img.src = imgSrc;
+            jenniferGallery.appendChild(img);
+        });
+    }
+
+    renderGallery(currentVisible);
+
+    showMoreBtn.addEventListener('click', () => {
+        if (currentVisible === 6) {
+            currentVisible = jenniferImages.length;
+            showMoreBtn.innerText = "Show Less";
+        } else {
+            currentVisible = 6;
+            showMoreBtn.innerText = "Show More";
+        }
+        renderGallery(currentVisible);
+    });
+
+    photoUpload.addEventListener('change', (event) => {
+        Array.from(event.target.files).forEach(file => {
+            const reader = new FileReader();
+            reader.onload = function (e) {
+                jenniferImages.push(e.target.result);
+                renderGallery(currentVisible);
+            };
+            reader.readAsDataURL(file);
+        });
+    });
+</script>
     <!-- Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 <!-- Footer Section (Keep up to Par + Contact Info) -->
@@ -577,12 +615,26 @@ footer {
             const holeItem = document.createElement("div");
             holeItem.className = "hole-item";
             holeItem.innerText = `Hole ${hole.number}`;
+            // Bigger Black Font Styling
+            holeItem.style.fontSize = "20px";
+            holeItem.style.color = "black";
+            holeItem.style.margin = "10px 0";
+            holeItem.style.cursor = "pointer";
 
             holeItem.addEventListener("mouseover", (event) => {
-                tooltip.innerText = `Hole ${hole.number}\nSponsor: ${hole.sponsor}\nContest: ${hole.contest}`;
+                tooltip.innerHTML = `
+                    <strong>Hole ${hole.number}</strong><br>
+                    <span style="font-size: 18px; color: black;">Sponsor: ${hole.sponsor}</span><br>
+                    <span style="font-size: 16px; color: black;">Contest: ${hole.contest}</span>
+                `;
                 tooltip.style.display = "block";
                 tooltip.style.top = `${event.clientY + 10}px`;
                 tooltip.style.left = `${event.clientX + 10}px`;
+                tooltip.style.backgroundColor = "#fff";
+                tooltip.style.padding = "10px";
+                tooltip.style.border = "1px solid black";
+                tooltip.style.borderRadius = "8px";
+                tooltip.style.color = "black";
             });
 
             holeItem.addEventListener("mouseout", () => {
