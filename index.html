@@ -433,7 +433,8 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 </script>
 
-   <div id="sponsorships" class="content-section">
+   <!-- Sponsorships Section -->
+<div id="sponsorships" class="content-section">
     <div class="hero">
         <h1>Golf Course Sponsorships</h1>
         <p>See the sponsors supporting this event.</p>
@@ -442,49 +443,68 @@ document.addEventListener("DOMContentLoaded", () => {
         <div class="hole-list">
             <!-- Holes will be added dynamically -->
         </div>
-        <div id="tooltip" class="tooltip"></div>
     </div>
 </div>
 
-    <div id="resources" class="content-section">
-        <div class="hero">
-            <h1>Fundraising Resources</h1>
-            <p>Helpful tools and information for fundraising.</p>
-        </div>
+<!-- Resources Section -->
+<div id="resources" class="content-section">
+    <div class="hero">
+        <h1>Fundraising Resources</h1>
+        <p>Helpful tools and information for fundraising.</p>
     </div>
+</div>
 
-    <!-- JavaScript -->
-    <script>
-    function showSection(sectionId) {
-        // Hide all sections
-        document.querySelectorAll('.content-section').forEach(section => {
-            section.classList.remove('active');
-        });
+<!-- Styles for Hole Cards and Footer -->
+<style>
+.hole-card {
+    background-color: #f8f9fa;
+    color: #000;
+}
+.hole-card h4 {
+    font-weight: bold;
+}
+.hole-card p {
+    margin: 5px 0;
+}
+footer {
+    margin-top: 50px;
+    padding: 20px 0;
+    background-color: white;
+    color: black;
+    text-align: center;
+    border-top: 3px solid #004466;
+}
+</style>
 
-        // Show the selected section
-        let selectedSection = document.getElementById(sectionId);
-        if (selectedSection) {
-            selectedSection.classList.add('active');
-        }
+<!-- Section Navigation Script -->
+<script>
+function showSection(sectionId) {
+    // Hide all sections
+    document.querySelectorAll('.content-section').forEach(section => {
+        section.classList.remove('active');
+    });
 
-        // Update the URL hash
-        history.pushState(null, "", "#" + sectionId);
+    // Show the selected section
+    let selectedSection = document.getElementById(sectionId);
+    if (selectedSection) {
+        selectedSection.classList.add('active');
     }
 
-    // Ensure the correct section is shown when the page loads
-    window.onload = function () {
-        let section = location.hash.replace("#", "") || "home";
-        showSection(section);
-    };
+    // Update the URL hash
+    history.pushState(null, "", "#" + sectionId);
+}
+
+// Ensure the correct section is shown when the page loads
+window.onload = function () {
+    let section = location.hash.replace("#", "") || "home";
+    showSection(section);
+};
 </script>
-        </div>
-    </div>
-</div>
 
+<!-- Bootstrap JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 
-    <!-- Bootstrap JS -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-<!-- Footer Section (Keep up to Par + Contact Info) -->
+<!-- Footer Section -->
 <footer class="container text-center mt-5">
     <h2 style="color: black;">Keep up to Par</h2>
     <p style="color: black;">Stay updated with the latest event news.</p>
@@ -503,26 +523,9 @@ document.addEventListener("DOMContentLoaded", () => {
         <p><strong>Michael Fisher:</strong> 432-853-6104</p>
     </div>
 </footer>
-footer {
-    margin-top: 50px;
-    padding: 20px 0;
-    background-color: white;
-    color: black;
-    text-align: center;
-    border-top: 3px solid #004466;
-}
-<script>
-    .hole-card {
-    background-color: #f8f9fa;
-    color: #000;
-}
-.hole-card h4 {
-    font-weight: bold;
-}
-.hole-card p {
-    margin: 5px 0;
-}
 
+<!-- Sponsor Hole List Script -->
+<script>
 document.addEventListener("DOMContentLoaded", function() {
     const holes = [
         { number: 1, sponsor: "ABC Corp", contest: "Longest Drive" },
@@ -546,7 +549,7 @@ document.addEventListener("DOMContentLoaded", function() {
     ];
 
     const holeList = document.querySelector(".hole-list");
-    holeList.innerHTML = ""; // Clear any previous content
+    holeList.innerHTML = "";
 
     holes.forEach(hole => {
         const holeCard = document.createElement("div");
