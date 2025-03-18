@@ -359,7 +359,7 @@ function getRandom(images, count) {
 
 // Render preview images (3 random)
 function renderPreview(images, containerId) {
-  const container = document.getElementById(containerId);
+   container = document.getElementById(containerId);
   container.innerHTML = "";
   getRandom(images, 3).forEach(src => {
     const img = document.createElement('img');
@@ -513,13 +513,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
 <script>
     // Random Gallery Image Loader
-    const allImages = [
-        "images/photo1.jpg", "images/photo2.jpg", "images/photo3.jpg", 
-        "images/photo4.jpg", "images/photo5.jpg", "images/photo6.jpg",
-        "images/photo7.jpg", "images/photo8.jpg", "images/photo9.jpg",
-        "images/photo10.jpg"
-    ];
-
     function getRandomImages() {
         let shuffled = allImages.sort(() => 0.5 - Math.random());
         return shuffled.slice(0, 6);
@@ -640,12 +633,8 @@ document.addEventListener("DOMContentLoaded", () => {
 </script>
 
     <script>
-    // Initial Photos (add your URLs here)
-    const photoBookImages = [
-        "your-photo-book-image1.jpg",
-        "your-photo-book-image2.jpg",
-        // Add more
-    ];
+    const photoBookImages = allImages;
+
     const puttImages = [
         "your-putt-image1.jpg",
         "your-putt-image2.jpg",
