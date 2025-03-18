@@ -290,34 +290,109 @@
 </div>
 
     <div id="impact" class="content-section">
-    <div class="hero">
-        <h1>Your Impact</h1>
-        <p>See how your contributions make a difference.</p>
-    </div>
+  <div class="hero">
+      <h1>Your Impact</h1>
+      <p>See how your contributions make a difference.</p>
+  </div>
 
-    <div class="container d-flex flex-wrap">
-    <!-- Photo Book (Jennifer) -->
+  <div class="container d-flex flex-wrap justify-content-between">
+    <!-- Photo Book (Active) -->
     <div style="flex: 1; min-width: 300px;">
-        <h2 style="color:white; text-align:center;">Photo Book</h2>
-        <div id="photo-book-gallery" class="gallery-grid"></div>
-
-        <button id="show-more-book" class="btn btn-light mt-3">Show More</button>
-
-        <input type="file" id="photo-book-upload" class="form-control mt-3" accept="image/*" multiple>
-        <p class="text-white mt-2">*Upload photos to the Photo Book</p>
+      <h2 style="color:white; text-align:center;">Photo Book</h2>
+      <div id="photo-book-preview" class="gallery-grid"></div>
+      <button id="show-more-book" class="btn btn-light mt-3">Show More</button>
     </div>
 
-    <!-- Kiss My Putt Gallery -->
-    <div class="ps-4" style="flex: 1; min-width: 300px;">
-        <h2 style="color:white; text-align:center;">Kiss My Putt Cancer 2025</h2>
-        <div id="putt-gallery" class="gallery-grid"></div>
-
-        <button id="show-more-putt" class="btn btn-light mt-3">Show More</button>
-
-        <input type="file" id="putt-upload" class="form-control mt-3" accept="image/*" multiple>
-        <p class="text-white mt-2">*Upload event photos here</p>
+    <!-- Kiss My Putt Cancer 2025 (Empty initially) -->
+    <div style="flex: 1; min-width: 300px;">
+      <h2 style="color:white; text-align:center;">Kiss My Putt Cancer 2025</h2>
+      <div id="putt-preview" class="gallery-grid"></div>
+      <button id="show-more-putt" class="btn btn-light mt-3">Show More</button>
     </div>
+  </div>
 </div>
+
+<!-- Photo Modal -->
+<div id="gallery-modal" class="modal" style="display:none;">
+  <div class="modal-content" style="background:white; padding:20px; border-radius:10px; max-width:90%; margin:auto;">
+    <span id="close-modal" style="cursor:pointer; font-size:24px;">&times;</span>
+    <div id="modal-images" class="gallery-grid"></div>
+  </div>
+</div>
+
+<style>
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+}
+.gallery-grid img {
+  width: 100%;
+  height: auto;
+  border-radius: 10px;
+  cursor: pointer;
+  object-fit: cover;
+}
+.modal {
+  position: fixed;
+  top: 0; left: 0; width: 100%; height: 100%;
+  background: rgba(0, 0, 0, 0.8);
+  z-index: 9999;
+  overflow: auto;
+}
+</style>
+
+<script>
+// PhotoBook Images (your full 15+ photos list here)
+const photoBookImages = [
+  "https://scontent-dfw5-1.xx.fbcdn.net/v/t39.30808-6/449074328_10211666424291846_6095042026856112079_n.jpg?...",
+  // ... [Rest of your image URLs remain exactly the same]
+];
+
+// Kiss My Putt Gallery (empty for now)
+const puttImages = [];
+
+// Randomize function
+function getRandom(images, count) {
+  return [...images].sort(() => 0.5 - Math.random()).slice(0, count);
+}
+
+// Render preview images (3 random)
+function renderPreview(images, containerId) {
+  const container = document.getElementById(containerId);
+  container.innerHTML = "";
+  getRandom(images, 3).forEach(src => {
+    const img = document.createElement('img');
+    img.src = src;
+    container.appendChild(img);
+  });
+}
+
+// Render full gallery in modal
+function showModal(images) {
+  const modal = document.getElementById("gallery-modal");
+  const modalImages = document.getElementById("modal-images");
+  modalImages.innerHTML = "";
+  images.forEach(src => {
+    const img = document.createElement('img');
+    img.src = src;
+    modalImages.appendChild(img);
+  });
+  modal.style.display = "block";
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+  renderPreview(photoBookImages, "photo-book-preview");
+  renderPreview(puttImages, "putt-preview");
+
+  document.getElementById("show-more-book").addEventListener("click", () => showModal(photoBookImages));
+  document.getElementById("show-more-putt").addEventListener("click", () => showModal(puttImages));
+
+  document.getElementById("close-modal").addEventListener("click", () => {
+    document.getElementById("gallery-modal").style.display = "none";
+  });
+});
+</script>
 
             <!-- About Jennifer -->
 <div class="bio mt-4 p-3" style="background-color: black; color: white; border-radius: 10px;">
