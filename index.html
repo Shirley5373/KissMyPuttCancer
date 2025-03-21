@@ -499,20 +499,19 @@ footer {
 <!-- Section Navigation Script -->
 <script>
 function showSection(sectionId) {
-    // Hide all sections
     document.querySelectorAll('.content-section').forEach(section => {
-        section.classList.remove('active');
+        section.classList.remove('active'); // Hide all
     });
 
-    // Show the selected section
     let selectedSection = document.getElementById(sectionId);
     if (selectedSection) {
-        selectedSection.classList.add('active');
+        selectedSection.classList.add('active'); // Only show the selected section
     }
 
-    // Update the URL hash
+    // Optional: Update the URL hash
     history.pushState(null, "", "#" + sectionId);
 }
+
 
 // Ensure the correct section is shown when the page loads
 window.onload = function () {
